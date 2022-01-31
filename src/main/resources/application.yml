@@ -1,0 +1,19 @@
+#quarkus:
+#  application:
+#    name: quarkusApp
+#datasources:
+#  default:
+#    url: jdbc:postgresql://localhost:5432/postgres
+#    driverClassName: org.postgresql.Driver
+#    username: postgres
+#    password: postgres
+#    schema-generate: CREATE_DROP
+#    dialect: POSTGRES
+#endpoints:
+#  all:
+#    enabled: true
+#    sensitive: false
+#  health:
+#    details-visible: anonymous
+#jpa.default.properties.hibernate.hbm2ddl.auto: update
+#
