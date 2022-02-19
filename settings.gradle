@@ -9,3 +9,6 @@ pluginManagement {
     }
 }
 rootProject.name='code-with-quarkus'
+include 'google-service'
+include 'amazon-services'
+
