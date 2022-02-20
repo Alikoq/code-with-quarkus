@@ -7,13 +7,13 @@ public class UserResponse {
     private Long id;
     private String name;
     private String address;
-    private Short age;
+    private Integer age;
 
 
     public UserResponse() {
     }
 
-    public UserResponse(Long id, String name, String address, Short age) {
+    public UserResponse(Long id, String name, String address, Integer age) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -49,11 +49,11 @@ public class UserResponse {
         this.address = address;
     }
 
-    public Short getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(Short age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 }
