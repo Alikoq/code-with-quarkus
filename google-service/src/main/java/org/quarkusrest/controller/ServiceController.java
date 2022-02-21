@@ -38,7 +38,7 @@ public class ServiceController {
     @Path("/amazon-service/get-all-users/{users}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllUsers(@PathParam String users){
-        System.out.println("google param: "+users);
+        System.out.println("google paramm: "+users);
         List<UserResponse> res=  amazonServices.getAllUsers(users);
 
         return Response.ok(res).build();
