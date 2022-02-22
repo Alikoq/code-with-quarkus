@@ -32,9 +32,10 @@ public class ApiResource {
 
     @GET
     @Path("/get-by-id/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
     public Response getById(Long id){
-        userService.findById(id);
-        return Response.ok().build();
+        UserEntity userEntity=userService.getById(id);
+        return Response.ok(userEntity).build();
     }
 
     @POST

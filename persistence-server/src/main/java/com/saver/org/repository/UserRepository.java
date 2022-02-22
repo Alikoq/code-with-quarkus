@@ -9,4 +9,7 @@ import javax.enterprise.context.ApplicationScoped;
 @ApplicationScoped
 public class UserRepository implements PanacheRepository<UserEntity> {
 
+    public UserEntity getById(Long id){
+        return find("SELECT m FROM UserEntity",id).firstResult();
+    }
 }

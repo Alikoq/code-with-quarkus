@@ -36,6 +36,13 @@ public class UserServiceImpl implements UserService{
       throw new NotFoundException(String.format("User %d not found",id));
     }
 
+    public UserEntity getById(Long id){
+        UserEntity entity=  userRepository.getById(id);
+        if(entity!=null){
+            return entity;
+        }
+        throw new NotFoundException(String.format("User %d not found",id));
+    }
     @Override
     public List<UserEntity> findAll() {
         List<UserEntity> getAll=userRepository.listAll();

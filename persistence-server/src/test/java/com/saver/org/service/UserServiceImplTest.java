@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @QuarkusTest
 class UserServiceImplTest {
-    @InjectMock
+    @Inject
     UserRepository userRepository;
 
     @Inject
@@ -48,7 +48,7 @@ class UserServiceImplTest {
 
         List<UserEntity> entities= (List<UserEntity>) response.getEntity();
         assertFalse(entities.isEmpty() );
-         assertEquals("Ali",entities.get(0).getName());
+        assertEquals("Ali",entities.get(0).getName());
     }
 
     @Test
@@ -57,6 +57,7 @@ class UserServiceImplTest {
 
     @Test
     void findById() {
+
     }
 
 
