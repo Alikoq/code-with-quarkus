@@ -20,9 +20,6 @@ public class CommonErrorResponse {
     public CommonErrorResponse(List<Messages> messages) {
         this.messages = messages;
     }
-    public void doOperation(){
-        LOG.info("Do some error operations");
-    }
     public List<Messages> getMessages() {
         return messages;
     }

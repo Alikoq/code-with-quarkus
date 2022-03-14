@@ -1,6 +1,8 @@
 package org.quarkusrest.exception;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import org.jboss.logging.Logger;
 import org.quarkusrest.dto.baseResponse.CommonErrorResponse;
 import org.quarkusrest.dto.baseResponse.Messages;
@@ -18,9 +20,10 @@ public class GlobalExceptionHandling implements ExceptionMapper<RuntimeException
     public Response toResponse(RuntimeException exception) {
         if(exception instanceof UserException) {
             LOG.info("UserException started");
+            List<Messages> list = new ArrayList<>(((UserException) exception).getMessages());
 
             return Response.status(Response.Status.NOT_FOUND)
-                    .entity(((UserException) exception).getMessages())
+                    .entity(new ErrorResponseBody(list))
                     .build();
         }
 
@@ -44,12 +47,26 @@ public class GlobalExceptionHandling implements ExceptionMapper<RuntimeException
                 .build();
     }
 
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     public static final class ErrorResponseBody {
+        private  String  errorMessage;
+        private List<Messages> messages;
 
-        private final String  errorMessage;
+        public ErrorResponseBody(List<Messages> messages) {
+            if(this.messages==null){
+                this.messages=new ArrayList<>();
+            }
+            this.messages.addAll(messages);
+        }
 
         public ErrorResponseBody(String message) {
             this.errorMessage = message;
+        }
+
+
+        public List<Messages> getMessages() {
+            return messages;
         }
 
         public String getErrorMessage() {

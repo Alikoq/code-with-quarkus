@@ -38,17 +38,12 @@ public class ValidationImpl {
                 boolean res= v.checkIt();
              }
             if(commonErrorResponse.getMessages().size()>0){
-                LOG.info("messages more than 0");
-                throw new UserException(commonErrorResponse.getMessages());
+                 throw new UserException(commonErrorResponse.getMessages());
             }
 
         }catch (RuntimeException ex){
-            LOG.info("Exception occurred "+ex.getMessage());
-            throw new UserException(commonErrorResponse.getMessages());
+             throw new UserException(commonErrorResponse.getMessages());
         }
-
-        LOG.info("Test validation ended: "+commonErrorResponse.getMessages());
-
         return new UserResponse("Ali","New York");
     }
 
