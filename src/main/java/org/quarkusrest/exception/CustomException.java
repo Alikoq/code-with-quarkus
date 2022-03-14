@@ -1,20 +1,21 @@
 package org.quarkusrest.exception;
 
 public class CustomException extends RuntimeException{
-    private String message;
+    private String msg;
     private Integer code;
+
     public CustomException(String message, Integer code) {
         super(message);
-        this.message=message;
-        this.code=code;
-    }
-    @Override
-    public String getMessage() {
-        return message;
+        this.msg = msg;
+        this.code = code;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 
     public Integer getCode() {

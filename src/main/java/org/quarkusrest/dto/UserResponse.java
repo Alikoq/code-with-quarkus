@@ -10,6 +10,13 @@ public class UserResponse {
     private String address;
     private Short age;
 
+    public UserResponse() {
+    }
+
+    public UserResponse(String name, String address){
+        this.name=name;
+        this.address=address;
+    }
     public UserResponse(UserEntity userEntity) {
         this.id = userEntity.getId();
         this.name = userEntity.getName();

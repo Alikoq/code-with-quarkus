@@ -1,31 +1,32 @@
 package org.quarkusrest.controller;
 
 
-import org.h2.engine.User;
+import org.jboss.logging.Logger;
 import org.quarkusrest.dto.UserRequest;
 import org.quarkusrest.dto.UserResponse;
+import org.quarkusrest.dto.baseResponse.CommonErrorResponse;
 import org.quarkusrest.dto.baseResponse.CommonResponse;
-import org.quarkusrest.service.ApiServices;
+import org.quarkusrest.exception.CountryException;
 import org.quarkusrest.service.ApiServicesImpl;
+import org.quarkusrest.service.ValidationImpl;
+import org.quarkusrest.validation.Country;
 
-import javax.annotation.security.RolesAllowed;
 import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.net.URI;
-import java.util.List;
 
 @Path("/v1/api")
 @RequestScoped
 public class UserController {
 
     private final ApiServicesImpl apiServices;
+    private final ValidationImpl validationService;
+    private static final Logger LOG= Logger.getLogger(UserController.class);
 
-    @Inject
-    public UserController(ApiServicesImpl apiServices){
+    public UserController(ApiServicesImpl apiServices,ValidationImpl validationService){
         this.apiServices=apiServices;
+        this.validationService=validationService;
     }
 
     @GET
@@ -45,5 +46,15 @@ public class UserController {
         return Response.ok(userResponse).build();
     }
 
+
+    @GET
+    @Path("/validate")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response validate() throws CountryException {
+        UserResponse userResponse=validationService.tetValidation();
+
+       return Response.ok(userResponse).build();
+
+    }
 
 }

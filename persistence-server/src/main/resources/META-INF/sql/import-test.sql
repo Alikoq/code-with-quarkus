@@ -1,5 +1,3 @@
-
-
 INSERT INTO userentity(id, name, address, age)
 VALUES (1, 'Ali', 'NewYork', '37');
 

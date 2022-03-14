@@ -6,11 +6,10 @@ import org.quarkusrest.dto.UserResponse;
  import org.quarkusrest.dto.baseResponse.Messages;
  import org.quarkusrest.entity.UserEntity;
  import org.quarkusrest.exception.CustomException;
+ import org.quarkusrest.exception.UserException;
  import org.quarkusrest.repository.UserRepository;
 
  import javax.enterprise.context.ApplicationScoped;
- import javax.inject.Singleton;
- import javax.swing.text.html.Option;
  import java.util.ArrayList;
  import java.util.List;
  import java.util.Optional;
@@ -24,10 +23,12 @@ public class ApiServicesImpl implements ApiServices {
     }
 
 
+
     @Override
     public CommonResponse<UserResponse> addUser(UserRequest userRequest) {
-         UserEntity entity=userRepository.save(new UserEntity(userRequest));
-         UserResponse createdUser=new UserResponse(entity);
+
+        UserEntity entity=userRepository.save(new UserEntity(userRequest));
+        UserResponse createdUser=new UserResponse(entity);
         return fillCommonResponse(createdUser,fillMessage("User created","success"),200);
 
     }

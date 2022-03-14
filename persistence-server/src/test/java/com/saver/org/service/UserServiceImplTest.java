@@ -14,17 +14,22 @@ import javax.inject.Inject;
 import javax.ws.rs.core.Response;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @QuarkusTest
 class UserServiceImplTest {
-    @Inject
+    @InjectMock
     UserRepository userRepository;
 
     @Inject
-    private ApiResource resource;
+    UserServiceImpl userService;
+
+    @Inject
+    ApiResource resource;
 
     private UserEntity userEntity;
 
@@ -32,7 +37,7 @@ class UserServiceImplTest {
     void init(){
         userEntity=new UserEntity();
         userEntity.setAddress("NewYork");
-        userEntity.setName("Ali");
+        userEntity.setName("Alik");
         userEntity.setAge((short)44);
         userEntity.setId(1L);
      }
@@ -40,15 +45,16 @@ class UserServiceImplTest {
     @Test
     void findAll() {
         List<UserEntity> userEntityList = new ArrayList<>();
-        userEntityList.add(userEntity);
         Mockito.when(userRepository.listAll()).thenReturn(userEntityList);
-        Response response= resource.getAll();
+        userEntityList.add(userEntity);
+        Response response= resource.getAll();//controller method
         assertNotNull(response);
         assertEquals(Response.Status.OK.getStatusCode(),response.getStatus());
 
         List<UserEntity> entities= (List<UserEntity>) response.getEntity();
         assertFalse(entities.isEmpty() );
-        assertEquals("Ali",entities.get(0).getName());
+        assertEquals("Alik",entities.get(0).getName());
+        assertEquals(1,entities.get(0).getId());
     }
 
     @Test
@@ -57,6 +63,7 @@ class UserServiceImplTest {
 
     @Test
     void findById() {
+
 
     }
 

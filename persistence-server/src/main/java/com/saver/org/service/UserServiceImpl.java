@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService{
         if(entity!=null){
             return entity;
         }
-        throw new NotFoundException(String.format("User %d not found",id));
+         throw new NotFoundException(String.format("User %d not found",id));
     }
     @Override
     public List<UserEntity> findAll() {

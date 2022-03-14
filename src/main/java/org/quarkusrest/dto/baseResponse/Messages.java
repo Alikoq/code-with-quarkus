@@ -4,6 +4,13 @@ public class Messages {
     private String type;
     private String message;
 
+    public Messages() {
+    }
+
+    public Messages(String message) {
+        this.message = message;
+    }
+
     public Messages(String type, String message) {
         this.type = type;
         this.message = message;
@@ -23,5 +30,13 @@ public class Messages {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    @Override
+    public String toString() {
+        return "Messages{" +
+                "type='" + type + '\'' +
+                ", message='" + message + '\'' +
+                '}';
     }
 }
